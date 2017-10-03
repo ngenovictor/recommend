@@ -8,7 +8,7 @@ import android.os.Bundle;
 import com.herokuapp.veekay.recommend.R;
 
 public class SplashActivity extends AppCompatActivity {
-    private static int splash_time_out=3000;
+    private static int splash_time_out=1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
