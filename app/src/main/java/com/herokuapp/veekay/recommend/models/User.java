@@ -5,4 +5,5 @@ package com.herokuapp.veekay.recommend.models;
  */
 
 public class User {
+
 }
