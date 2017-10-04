@@ -50,7 +50,8 @@ public class HomeTabFragment extends Fragment implements View.OnClickListener{
                 Toast toast = Toast.makeText(mContext, text, duration);
                 toast.show();
             }else{
-                Intent intent
+                Intent intent = new Intent(getActivity(), AskQuestionActivity.class);
+                startActivity(intent);
             }
         }
     }
