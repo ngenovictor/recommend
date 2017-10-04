@@ -49,11 +49,7 @@ public class HomeTabFragment extends Fragment implements View.OnClickListener{
                 Toast toast = Toast.makeText(mContext, text, duration);
                 toast.show();
             }else{
-                CharSequence text = "Loged in already";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(mContext, text, duration);
-                toast.show();
+                Intent intent
             }
         }
     }

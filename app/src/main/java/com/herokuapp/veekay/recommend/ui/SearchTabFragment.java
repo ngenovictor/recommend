@@ -12,17 +12,17 @@ import com.herokuapp.veekay.recommend.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NotificationsTabFragment extends Fragment {
+public class SearchTabFragment extends Fragment {
 
 
-    public static NotificationsTabFragment newInstance() {
-        return new NotificationsTabFragment();
+    public static SearchTabFragment newInstance() {
+        return new SearchTabFragment();
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_notifications_tab, container, false);
+        View view = inflater.inflate(R.layout.fragment_search_tab, container, false);
         return view;
     }
 
