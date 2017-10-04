@@ -6,4 +6,5 @@ package com.herokuapp.veekay.recommend.utils;
 
 public class Constants {
     public final static String USERS_DB_KEY = "users";
+    public final static String QUESTIONS_DB_KEY = "questions";
 }
