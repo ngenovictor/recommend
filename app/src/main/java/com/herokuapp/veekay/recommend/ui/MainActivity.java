@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.herokuapp.veekay.recommend.R;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private DrawerLayout mDrawerLayout;
     private FloatingActionButton fab;
     private FirebaseAuth mAuth;
@@ -36,21 +36,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab = (FloatingActionButton) findViewById(R.id.addNewButton);
         fab.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 
+
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(currentUser==null){
-                    Context context = getApplicationContext();
-                    CharSequence text = "You need to login first!!";
-                    int duration = Toast.LENGTH_SHORT;
+        fab.setOnClickListener(this);
 
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                }
-            }
-        });
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -117,10 +107,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.logout) {
 
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == fab){
+            if(currentUser==null){
+                Context context = getApplicationContext();
+                CharSequence text = "You need to login first!!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }else{
+                Context context = getApplicationContext();
+                CharSequence text = "Loged in already";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+        }
     }
 }
