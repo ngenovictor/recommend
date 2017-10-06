@@ -139,10 +139,14 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                     newUser.setUserId(createdUser.getUid());
 
                     DatabaseReference myRef = mDatabase.child(Constants.USERS_DB_KEY);
+
                     DatabaseReference pushRef = myRef.push();
+
                     String pushId = pushRef.getKey();
+
                     newUser.setPushId(pushId);
-                    myRef.push().setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                    pushRef.setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){

@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>
         <android.support.design.widget.TabItem
-            android:icon="@drawable/ic_message_black_24dp"
+            android:icon="@drawable/ic_email_black_24dp"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>
     </android.support.design.widget.TabLayout>
@@ -40,7 +40,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/homeNavTabLayout">
-
     </android.support.v4.view.ViewPager>
 
 </android.support.constraint.ConstraintLayout>

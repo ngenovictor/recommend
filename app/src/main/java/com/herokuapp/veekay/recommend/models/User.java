@@ -1,5 +1,7 @@
 package com.herokuapp.veekay.recommend.models;
 
+import java.util.ArrayList;
+
 /**
  * Created by victor on 10/3/17.
  */
@@ -10,6 +12,7 @@ public class User {
     private String secondName;
     private String pushId;
     private String userName;
+    private ArrayList<String> friends = new ArrayList<>();
 
     public User(){
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -31,5 +34,14 @@ public class User {
     public String getSecondName(){return secondName;}
     public String getPushId(){return pushId;}
     public String getUserName(){return userName;}
+    public String getFullName(){
+        return firstName+" "+secondName;
+    }
+    public ArrayList<String> getFriends(){
+        return friends;
+    }
+    public void addFriends(String friendUid){
+        friends.add(friendUid);
+    }
 
 }

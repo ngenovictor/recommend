@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+    <ImageView
+        android:id="@+id/qOwnerImage"
+        android:src="@drawable/ic_account_circle_black_24dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/questionTextView"
+        app:layout_constraintVertical_bias="0"/>
+    <TextView
+        android:id="@+id/qOwnerName"
+        android:text="Statcy Naomi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/qOwnerImage"/>
+    <TextView
+        android:id="@+id/qOwnerUserName"
+        android:text="\@stacynaomi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/qOwnerName"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/questionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/question_sample"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintLeft_toRightOf="@+id/qOwnerImage"
+        app:layout_constraintTop_toBottomOf="@+id/qOwnerName" />
+    <ImageView
+        android:id="@+id/qAddComment"
+        android:src="@drawable/ic_message_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView"
+        app:layout_constraintLeft_toRightOf="@+id/qOwnerImage"/>
+    <TextView
+        android:id="@+id/numberOfComments"
+        android:text="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@id/qAddComment"
+        app:layout_constraintTop_toTopOf="@id/qAddComment"
+        app:layout_constraintBottom_toBottomOf="@id/qAddComment"/>
+    <ImageView
+        android:id="@+id/qShareTimeLine"
+        android:src="@drawable/ic_repeat_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView"
+        app:layout_constraintLeft_toRightOf="@+id/qAddComment"
+        app:layout_constraintRight_toLeftOf="@+id/qSendMessage"/>
+    <TextView
+        android:id="@+id/numberOfShares"
+        android:text="5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@id/qShareTimeLine"
+        app:layout_constraintTop_toTopOf="@id/qShareTimeLine"
+        app:layout_constraintBottom_toBottomOf="@id/qShareTimeLine"/>
+    <ImageView
+        android:id="@+id/qSendMessage"
+        android:src="@drawable/ic_email_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView"
+        app:layout_constraintLeft_toRightOf="@+id/qShareTimeLine"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+</android.support.constraint.ConstraintLayout>
