@@ -62,6 +62,8 @@ public class DisplayQuestionsAdapter extends RecyclerView.Adapter<DisplayQuestio
         private User currentUser;
         private TextView qOwnerName;
         private TextView qOwnerUserName;
+        private TextView numberOfComments;
+        private TextView numberOfShares;
 
         public QuestionViewHolder(View itemView, User loggedInUser) {
             super(itemView);
@@ -70,12 +72,20 @@ public class DisplayQuestionsAdapter extends RecyclerView.Adapter<DisplayQuestio
             currentUser = loggedInUser;
             qOwnerName = itemView.findViewById(R.id.qOwnerName);
             qOwnerUserName = itemView.findViewById(R.id.qOwnerUserName);
+            numberOfComments = itemView.findViewById(R.id.numberOfComments);
+            numberOfShares = itemView.findViewById(R.id.numberOfShares);
 
         }
         public void bindQuestion(final Question question, int position){
             mQuestion.setText(question.getQuestion());
             qOwnerName.setText(currentUser.getFullName());
             qOwnerUserName.setText("@"+currentUser.getUserName());
+            if (question.getComments()>0){
+                numberOfComments.setText(Integer.toString(question.getComments()));
+            }
+            if (question.getShares()>0){
+                numberOfShares.setText(Integer.toString(question.getComments()));
+            }
             qAddComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
