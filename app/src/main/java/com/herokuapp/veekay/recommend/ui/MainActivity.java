@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView nav_view;
     private View  headerView;
     private ChildEventListener mChildEventListener;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +65,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        for(int i=0; i<30;i++){
-            Log.d("text", "text"+i);
-        }
+        mDrawerLayout = findViewById(R.id.main_drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        homeNavTabLayout = findViewById(R.id.homeNavTabLayout);
+        mViewPager = findViewById(R.id.mainActivityViewPager);
 
 
         userEmailAddress = headerView.findViewById(R.id.userEmailAddress);
@@ -78,6 +88,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     User dbUser = dataSnapshot.getValue(User.class);
+                    user = dbUser;
+                    homeTabsPagerAdapter = new HomeTabsPagerAdapter(getSupportFragmentManager(), user);
+                    mViewPager.setAdapter(homeTabsPagerAdapter);
+                    mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(homeNavTabLayout));
+                    homeNavTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 //                String fullName = dbUser.getFullName();
                     userFullName.setText(dbUser.getFullName());
                 }
@@ -110,37 +125,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        mDrawerLayout = findViewById(R.id.main_drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
 
 
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
-        homeNavTabLayout = findViewById(R.id.homeNavTabLayout);
-        mViewPager = findViewById(R.id.mainActivityViewPager);
-        homeTabsPagerAdapter = new HomeTabsPagerAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(homeTabsPagerAdapter);
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(homeNavTabLayout));
-        homeNavTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                mViewPager.setCurrentItem(tab.getPosition(), true);
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
         createAuthStateListener();
 
     }

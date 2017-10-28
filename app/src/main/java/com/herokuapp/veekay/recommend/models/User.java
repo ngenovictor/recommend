@@ -1,11 +1,13 @@
 package com.herokuapp.veekay.recommend.models;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 
 /**
  * Created by victor on 10/3/17.
  */
-
+@Parcel
 public class User {
     private String userId;
     private String firstName;

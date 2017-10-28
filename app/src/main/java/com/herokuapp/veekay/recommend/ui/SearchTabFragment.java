@@ -46,9 +46,11 @@ public class SearchTabFragment extends Fragment implements View.OnClickListener 
     private FirebaseDatabase database;
     private DatabaseReference reference;
     private Context mContext;
+    private static User currentUser;
 
 
-    public static SearchTabFragment newInstance() {
+    public static SearchTabFragment newInstance(User loggedInUser) {
+        currentUser = loggedInUser;
         return new SearchTabFragment();
     }
     @Override

@@ -9,14 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.herokuapp.veekay.recommend.R;
+import com.herokuapp.veekay.recommend.models.User;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class InboxTabFragment extends Fragment {
+    private static User user;
 
 
-    public static InboxTabFragment newInstance() {
+    public static InboxTabFragment newInstance(User loggedInUser) {
+        user = loggedInUser;
         return new InboxTabFragment();
     }
 

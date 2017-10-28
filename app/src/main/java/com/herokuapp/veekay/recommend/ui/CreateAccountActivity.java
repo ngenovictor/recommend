@@ -70,8 +70,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             String username = newUserName.getText().toString().trim();
             String email = newEmail.getText().toString().trim();
             String password = newPassword.getText().toString().trim();
-            String confrimPassword = confirmNewPassword.getText().toString().trim();
-            boolean validCredentials = runCredentialsValidity(firstName, secondName, email, password, confrimPassword);
+            String confirmPassword = confirmNewPassword.getText().toString().trim();
+            boolean validCredentials = runCredentialsValidity(firstName, secondName, email, password, confirmPassword);
             if(validCredentials){
                 validateUserNameAndCreateAccount(firstName, secondName, email, username, password);
             };
@@ -109,10 +109,16 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                    if (snapshot.child("userName").getValue().toString().equals(username)){
-                        newUserName.setError("Username already taken");
-                        newUserName.requestFocus();
-                        return;
+                    try{
+                        User dbUser = snapshot.getValue(User.class);
+                        if (dbUser.getUserName().equals(username)){
+                            newUserName.setError("Username already taken");
+                            newUserName.requestFocus();
+                            return;
+                        }
+                    }catch (NullPointerException e){
+                        //nullpointer when db is clean
+                        e.printStackTrace();
                     }
                 }
                 createUser(firstName,secondName,email,username,password);

@@ -1,11 +1,13 @@
 package com.herokuapp.veekay.recommend.models;
 
+import org.parceler.Parcel;
+
 import java.util.Date;
 
 /**
  * Created by victor on 10/4/17.
  */
-
+@Parcel
 public class Question {
     private String question;
     private String ownerId;

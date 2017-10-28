@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.herokuapp.veekay.recommend.models.User;
 import com.herokuapp.veekay.recommend.ui.HomeTabFragment;
 import com.herokuapp.veekay.recommend.ui.InboxTabFragment;
 import com.herokuapp.veekay.recommend.ui.NotificationsTabFragment;
@@ -14,20 +15,22 @@ import com.herokuapp.veekay.recommend.ui.SearchTabFragment;
  */
 
 public class HomeTabsPagerAdapter extends FragmentPagerAdapter {
-    public HomeTabsPagerAdapter(FragmentManager fm) {
+    private User user;
+    public HomeTabsPagerAdapter(FragmentManager fm, User loggedInUser) {
         super(fm);
+        user = loggedInUser;
     }
     @Override
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return HomeTabFragment.newInstance();
+                return HomeTabFragment.newInstance(user);
             case 1:
-                return NotificationsTabFragment.newInstance();
+                return NotificationsTabFragment.newInstance(user);
             case 2:
-                return SearchTabFragment.newInstance();
+                return SearchTabFragment.newInstance(user);
             case 3:
-                return InboxTabFragment.newInstance();
+                return InboxTabFragment.newInstance(user);
         }
         return null;
     }

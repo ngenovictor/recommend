@@ -33,7 +33,8 @@
         <activity
             android:name=".ui.CreateAccountActivity"
             android:label="@string/title_activity_create_account" />
-        <activity android:name=".ui.AskQuestionActivity"></activity>
+        <activity android:name=".ui.AskQuestionActivity" />
+        <activity android:name=".ui.GiveRecommendationsActivity"></activity>
     </application>
 
 </manifest>

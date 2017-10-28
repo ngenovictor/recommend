@@ -28,6 +28,7 @@ import com.herokuapp.veekay.recommend.R;
 import com.herokuapp.veekay.recommend.adapters.DisplayQuestionsAdapter;
 import com.herokuapp.veekay.recommend.adapters.QuestionListViewHolder;
 import com.herokuapp.veekay.recommend.models.Question;
+import com.herokuapp.veekay.recommend.models.User;
 import com.herokuapp.veekay.recommend.utils.Constants;
 
 import java.util.ArrayList;
@@ -40,10 +41,12 @@ public class HomeTabFragment extends Fragment implements View.OnClickListener{
     private RecyclerView homeQuestionsRecyclerView;
     private DisplayQuestionsAdapter displayQuestionsAdapter;
     private ArrayList<Question> questions = new ArrayList<>();
+    private static User user;
 
 
-    public static HomeTabFragment newInstance() {
+    public static HomeTabFragment newInstance(User loggedInUser) {
         HomeTabFragment homeTabFragment = new HomeTabFragment();
+        user = loggedInUser;
         return homeTabFragment;
     }
 
@@ -114,7 +117,7 @@ public class HomeTabFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("questions", Integer.toString(questions.size()));
-                displayQuestionsAdapter = new DisplayQuestionsAdapter(getContext(), questions);
+                displayQuestionsAdapter = new DisplayQuestionsAdapter(getContext(), questions, user);
                 homeQuestionsRecyclerView.setHasFixedSize(true);
                 homeQuestionsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 homeQuestionsRecyclerView.setAdapter(displayQuestionsAdapter);

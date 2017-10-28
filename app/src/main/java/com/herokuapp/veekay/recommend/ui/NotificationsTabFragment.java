@@ -8,14 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.herokuapp.veekay.recommend.R;
+import com.herokuapp.veekay.recommend.models.User;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class NotificationsTabFragment extends Fragment {
+    private static User user;
 
 
-    public static NotificationsTabFragment newInstance() {
+    public static NotificationsTabFragment newInstance(User loggedInUser) {
+        user = loggedInUser;
         return new NotificationsTabFragment();
     }
 
