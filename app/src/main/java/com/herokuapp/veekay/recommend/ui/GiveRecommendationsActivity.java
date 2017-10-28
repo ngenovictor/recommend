@@ -109,15 +109,56 @@ public class GiveRecommendationsActivity extends AppCompatActivity implements Vi
     public void onClick(View view) {
         if(view == submitRecommendation){
             String recommendationText = addRecommendation.getText().toString().trim();
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.RECOMMENDATIONS_DB_KEY);
-            Recommendation newRecommendation = new Recommendation(recommendationText);
-            newRecommendation.setUserPushId(user.getPushId());
-            DatabaseReference pushRef = ref.push();
-            String pushId = pushRef.getKey();
-            newRecommendation.setPushId(pushId);
-            newRecommendation.setQuestionPushId(question.getPushId());
-            pushRef.setValue(newRecommendation);
-            addRecommendation.setText("");
+            if (recommendationText.length()<5){
+                addRecommendation.setError("Too short to be a valid response");
+            }else{
+                DatabaseReference recommendationRef = FirebaseDatabase.getInstance().getReference(Constants.RECOMMENDATIONS_DB_KEY);
+                Recommendation newRecommendation = new Recommendation(recommendationText);
+                newRecommendation.setUserPushId(user.getPushId());
+                DatabaseReference pushRef = recommendationRef.push();
+                String pushId = pushRef.getKey();
+                newRecommendation.setPushId(pushId);
+                newRecommendation.setQuestionPushId(question.getPushId());
+                pushRef.setValue(newRecommendation);
+
+                addRecommendation.setText("");
+                // increase number of comments
+                DatabaseReference questionRef = FirebaseDatabase.getInstance().getReference(Constants.QUESTIONS_DB_KEY);
+                questionRef.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        Question dbQuestion = dataSnapshot.getValue(Question.class);
+                        if (dbQuestion.getPushId().equals(question.getPushId())){
+                            int comments = dbQuestion.getComments()+1;
+                            dbQuestion.setComments(comments);
+                            DatabaseReference thisQuestionRef = dataSnapshot.getRef();
+                            thisQuestionRef.setValue(dbQuestion);
+                            return;
+                        }
+
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
         }
     }
 }
