@@ -2,6 +2,9 @@ package com.herokuapp.veekay.recommend.models;
 
 import org.parceler.Parcel;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by victor on 10/9/17.
  */
@@ -13,6 +16,7 @@ public class Recommendation {
     private String userPushId;
     private String pushId;
     private String questionPushId;
+    private String dateCreated;
 
 
     public Recommendation(){}
@@ -20,6 +24,8 @@ public class Recommendation {
         this.recommendation = recommendation;
         thumbsDown = 0;
         thumbsUp = 0;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        dateCreated = dateFormat.format(new Date());
     }
     public String getRecommendation(){
         return recommendation;
@@ -39,6 +45,11 @@ public class Recommendation {
     public String getQuestionPushId(){
         return questionPushId;
     }
+
+    public String getDateCreated() {
+        return dateCreated;
+    }
+
     public void setUserPushId(String userPushId){
         this.userPushId = userPushId;
     }
