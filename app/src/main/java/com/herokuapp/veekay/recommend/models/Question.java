@@ -2,6 +2,7 @@ package com.herokuapp.veekay.recommend.models;
 
 import org.parceler.Parcel;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -12,12 +13,13 @@ public class Question {
     private String question;
     private String ownerId;
     private String pushId;
-    private Date dateCreated;
+    private String dateCreated;
 
     public Question(){}
     public Question(String question){
         this.question = question;
-        dateCreated = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        dateCreated = dateFormat.format(new Date());
     }
     public void setOwnerId(String ownerId){
         this.ownerId = ownerId;
@@ -34,7 +36,7 @@ public class Question {
     public String getPushId(){
         return pushId;
     }
-    public Date getDateCreated(){
+    public String getDateCreated(){
         return dateCreated;
     }
 
