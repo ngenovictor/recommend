@@ -14,12 +14,16 @@ public class Question {
     private String ownerId;
     private String pushId;
     private String dateCreated;
+    private int comments;
+    private int shares;
 
     public Question(){}
     public Question(String question){
         this.question = question;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         dateCreated = dateFormat.format(new Date());
+        comments = 0;
+        shares = 0;
     }
     public void setOwnerId(String ownerId){
         this.ownerId = ownerId;
@@ -40,15 +44,19 @@ public class Question {
         return dateCreated;
     }
 
+    public int getComments() {
+        return comments;
+    }
 
+    public int getShares() {
+        return shares;
+    }
 
+    public void setComments(int comments) {
+        this.comments = comments;
+    }
 
-
-
-
-
-
-
-
-
+    public void setShares(int shares) {
+        this.shares = shares;
+    }
 }
